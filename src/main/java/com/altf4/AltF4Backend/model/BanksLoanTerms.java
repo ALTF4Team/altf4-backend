@@ -3,7 +3,7 @@ package com.altf4.AltF4Backend.model;
 import lombok.Data;
 
 @Data
-public class LoanTerms {
+public class BanksLoanTerms {
 
     private double euriborRate;
 
