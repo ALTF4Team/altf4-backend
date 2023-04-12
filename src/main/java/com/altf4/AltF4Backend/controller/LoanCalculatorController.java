@@ -18,6 +18,6 @@ public class LoanCalculatorController {
     @PostMapping
     @ResponseBody
     public LoanCalculationResponse postLoanCalculations(@RequestBody MonthlyPaymentRequest loanRequest){
-        return loanCalculatorService.calculateAvailableLoanDetails(loanRequest, loanTerms);
+        return loanCalculatorService.calculateMonthlyPayments(loanRequest, loanTerms);
     }
 }
