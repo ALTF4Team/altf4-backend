@@ -6,5 +6,5 @@ import com.altf4.AltF4Backend.model.BanksLoanTerms;
 
 public interface LoanCalculatorService {
 
-    LoanCalculationResponse calculateAvailableLoanDetails(MonthlyPaymentRequest loanRequest, BanksLoanTerms loanTerms);
+    LoanCalculationResponse calculateMonthlyPayments(MonthlyPaymentRequest monthlyPaymentRequest, BanksLoanTerms banksLoanTerms);
 }
