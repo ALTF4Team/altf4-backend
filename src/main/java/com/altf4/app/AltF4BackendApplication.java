@@ -1,4 +1,4 @@
-package com.altf4.AltF4Backend;
+package com.altf4.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

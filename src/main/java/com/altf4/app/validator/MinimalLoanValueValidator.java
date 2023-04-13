@@ -1,6 +1,6 @@
-package com.altf4.AltF4Backend.validator;
+package com.altf4.app.validator;
 
-import com.altf4.AltF4Backend.exception.ValidationException;
+import com.altf4.app.exception.ValidationException;
 
 public class MinimalLoanValueValidator extends AbstractValidator <Integer> {
 

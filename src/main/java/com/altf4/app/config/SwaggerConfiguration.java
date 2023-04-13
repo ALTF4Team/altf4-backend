@@ -1,4 +1,4 @@
-package com.altf4.AltF4Backend.config;
+package com.altf4.app.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
