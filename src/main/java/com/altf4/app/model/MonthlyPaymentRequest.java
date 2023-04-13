@@ -7,10 +7,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class MonthlyPaymentRequest {
 
-    private int loanSize;
+    private int totalAmount;
 
     private int downPayment;
 
-    private int loanTermYears;
+    private int termYears;
 
 }

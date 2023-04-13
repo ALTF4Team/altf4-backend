@@ -12,8 +12,8 @@ public class EstimatedMonthlyPaymentRequestValidator {
     private final LoanToDownPaymentRatioException loanToDownPaymentRatioException = new LoanToDownPaymentRatioException();
 
     public void validate(MonthlyPaymentRequest monthlyPaymentRequest) {
-        minimalLoanValueValidator.validate(monthlyPaymentRequest.getLoanSize());
-        loanTermValidator.validate(monthlyPaymentRequest.getLoanTermYears());
+        minimalLoanValueValidator.validate(monthlyPaymentRequest.getTotalAmount());
+        loanTermValidator.validate(monthlyPaymentRequest.getTermYears());
         negativeValueValidator.validate(monthlyPaymentRequest);
         loanToDownPaymentRatioException.validate(monthlyPaymentRequest);
     }

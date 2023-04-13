@@ -10,7 +10,7 @@ public class LoanToDownPaymentRatioException extends AbstractValidator<MonthlyPa
     @Override
     public void validate(MonthlyPaymentRequest request) throws ValidationException {
 
-        if ((double)(request.getLoanSize() - request.getDownPayment()) / request.getLoanSize() > LOAN_TO_DOWN_PAYMENT_RATIO) {
+        if ((double)(request.getTotalAmount() - request.getDownPayment()) / request.getTotalAmount() > LOAN_TO_DOWN_PAYMENT_RATIO) {
             throw new ValidationException("Requested loan's amount it too high for provided down payment." +
                     " Down payment must form at least 85% of requested loan.");
         }

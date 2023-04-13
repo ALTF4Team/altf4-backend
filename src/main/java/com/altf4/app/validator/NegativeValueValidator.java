@@ -7,7 +7,7 @@ public class NegativeValueValidator extends AbstractValidator<MonthlyPaymentRequ
 
     @Override
     public void validate(MonthlyPaymentRequest request) throws ValidationException {
-        if (request.getLoanSize() <= request.getDownPayment()) {
+        if (request.getTotalAmount() <= request.getDownPayment()) {
             throw new ValidationException("Loan size must be bigger than down payment");
         }
     }

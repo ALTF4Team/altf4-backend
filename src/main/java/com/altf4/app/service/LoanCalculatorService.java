@@ -23,9 +23,9 @@ public class LoanCalculatorService {
 
         validator.validate(monthlyPaymentRequest);
 
-        int banksLoanAmount = monthlyPaymentRequest.getLoanSize() - monthlyPaymentRequest.getDownPayment();
+        int banksLoanAmount = monthlyPaymentRequest.getTotalAmount() - monthlyPaymentRequest.getDownPayment();
         double monthlyInterestRate = (EURIBOR_RATE + MARGIN) / 12;
-        int loanTermMonths = monthlyPaymentRequest.getLoanTermYears() * 12;
+        int loanTermMonths = monthlyPaymentRequest.getTermYears() * 12;
 
         int equatedMonthlyInstallment = (int) (Math.round(
                 banksLoanAmount * monthlyInterestRate
