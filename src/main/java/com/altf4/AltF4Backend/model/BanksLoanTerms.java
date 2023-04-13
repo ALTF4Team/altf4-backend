@@ -1,21 +1,18 @@
 package com.altf4.AltF4Backend.model;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 @Data
+@Component
 public class BanksLoanTerms {
 
-    private double euriborRate;
+    private double euriborRate = 0.03335;
 
-    private double margin;
-
-    private double interestRate;
+    private double margin = 0.025;
 
     private double loanServiceRatio;
 
-    private double annuityPaymentAmount;
-
-    private double linearPaymentAmount;
-
+    private double loanToValueRatio;
 
 }
