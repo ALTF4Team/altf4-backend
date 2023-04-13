@@ -5,9 +5,9 @@ import com.altf4.app.exception.ValidationException;
 public class MinimalLoanValueValidator extends AbstractValidator <Integer> {
 
     @Override
-    public void validate(Integer loanSize) throws ValidationException {
+    public void validate(Integer totalAmount) throws ValidationException {
 
-        if (loanSize < 10000) {
+        if (totalAmount < 10000) {
             throw new ValidationException("Requested loan must be at least 10.000 euros.");
         }
 
