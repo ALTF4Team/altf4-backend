@@ -1,13 +1,36 @@
 package com.altf4.AltF4Backend.service;
 
-import com.altf4.AltF4Backend.dto.LoanCalculationResponse;
-import com.altf4.AltF4Backend.model.MonthlyPaymentRequest;
+import com.altf4.AltF4Backend.dto.LoanCalculationResponseDTO;
+import com.altf4.AltF4Backend.model.EstimatedMonthlyPaymentRequest;
 import com.altf4.AltF4Backend.model.BanksLoanTerms;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LoanCalculatorServiceImpl implements LoanCalculatorService {
 
+    @Autowired
+    private LoanCalculationResponseDTO loanCalculationResponseDTO;
+    private final BanksLoanTerms banksLoanTerms = new BanksLoanTerms();
+
+
     @Override
-    public LoanCalculationResponse calculateMonthlyPayments(MonthlyPaymentRequest monthlyPaymentRequest, BanksLoanTerms banksLoanTerms) {
-        return null;
+    public LoanCalculationResponseDTO calculateMonthlyAnnuityPayments(
+            EstimatedMonthlyPaymentRequest estimatedMonthlyPaymentRequest) {
+
+        int banksLoanAmount = estimatedMonthlyPaymentRequest.getLoanSize() - estimatedMonthlyPaymentRequest.getDownPayment();
+        double monthlyInterestRate = (banksLoanTerms.getEuriborRate() + banksLoanTerms.getMargin()) / 12;
+        int loanTermMonths = estimatedMonthlyPaymentRequest.getLoanTermYears() * 12;
+
+        int equatedMonthlyInstallment = (int) (Math.round(
+                banksLoanAmount * monthlyInterestRate
+                * Math.pow(1 + monthlyInterestRate, loanTermMonths)
+                / (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1) / 10.0) * 10);
+
+        loanCalculationResponseDTO.setMonthlyPaymentAmount(equatedMonthlyInstallment);
+
+        return loanCalculationResponseDTO;
     }
+
+
 }

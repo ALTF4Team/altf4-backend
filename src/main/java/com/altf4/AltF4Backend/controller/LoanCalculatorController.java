@@ -1,23 +1,29 @@
 package com.altf4.AltF4Backend.controller;
 
-import com.altf4.AltF4Backend.dto.LoanCalculationResponse;
-import com.altf4.AltF4Backend.model.MonthlyPaymentRequest;
-import com.altf4.AltF4Backend.model.BanksLoanTerms;
+import com.altf4.AltF4Backend.dto.LoanCalculationResponseDTO;
+import com.altf4.AltF4Backend.model.EstimatedMonthlyPaymentRequest;
 import com.altf4.AltF4Backend.service.LoanCalculatorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-@RequestMapping("students")
+@RequestMapping("/api/loan-calculator")
 @RequiredArgsConstructor
 public class LoanCalculatorController {
 
-    private final LoanCalculatorService loanCalculatorService;
-    private final BanksLoanTerms loanTerms;
+    private LoanCalculatorService loanCalculatorService;
 
-    @PostMapping
+    @Autowired
+    public LoanCalculatorController (LoanCalculatorService loanCalculatorService) {
+        this.loanCalculatorService = loanCalculatorService;
+    }
+
+
+    @PostMapping("/annuity")
     @ResponseBody
-    public LoanCalculationResponse postLoanCalculations(@RequestBody MonthlyPaymentRequest loanRequest){
-        return loanCalculatorService.calculateMonthlyPayments(loanRequest, loanTerms);
+    public LoanCalculationResponseDTO returnAnnuityCalculations(@RequestBody EstimatedMonthlyPaymentRequest request){
+        return loanCalculatorService.calculateMonthlyAnnuityPayments(request);
     }
 }
