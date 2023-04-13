@@ -21,7 +21,7 @@ public class LoanCalculatorController {
     }
 
 
-    @PostMapping("/annuity")
+    @PostMapping
     @ResponseBody
     public MonthlyPaymentResponse returnAnnuityCalculations(@RequestBody MonthlyPaymentRequest request){
         return loanCalculatorService.calculateMonthlyAnnuityPayments(request);
