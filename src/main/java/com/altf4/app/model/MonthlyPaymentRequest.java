@@ -1,11 +1,11 @@
-package com.altf4.AltF4Backend.model;
+package com.altf4.app.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class EstimatedMonthlyPaymentRequest {
+public class MonthlyPaymentRequest {
 
     private int loanSize;
 

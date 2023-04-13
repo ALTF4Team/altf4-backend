@@ -1,11 +1,11 @@
-package com.altf4.AltF4Backend.dto;
+package com.altf4.app.model;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
 @Component
-public class LoanCalculationResponseDTO {
+public class MonthlyPaymentResponse {
 
     private int monthlyPaymentAmount;
 

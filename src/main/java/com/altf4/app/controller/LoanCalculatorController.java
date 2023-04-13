@@ -1,8 +1,8 @@
-package com.altf4.AltF4Backend.controller;
+package com.altf4.app.controller;
 
-import com.altf4.AltF4Backend.dto.LoanCalculationResponseDTO;
-import com.altf4.AltF4Backend.model.EstimatedMonthlyPaymentRequest;
-import com.altf4.AltF4Backend.service.LoanCalculatorService;
+import com.altf4.app.model.MonthlyPaymentResponse;
+import com.altf4.app.model.MonthlyPaymentRequest;
+import com.altf4.app.service.LoanCalculatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class LoanCalculatorController {
 
     @PostMapping("/annuity")
     @ResponseBody
-    public LoanCalculationResponseDTO returnAnnuityCalculations(@RequestBody EstimatedMonthlyPaymentRequest request){
+    public MonthlyPaymentResponse returnAnnuityCalculations(@RequestBody MonthlyPaymentRequest request){
         return loanCalculatorService.calculateMonthlyAnnuityPayments(request);
     }
 }

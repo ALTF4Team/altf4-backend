@@ -1,6 +1,6 @@
-package com.altf4.AltF4Backend.validator;
+package com.altf4.app.validator;
 
-import com.altf4.AltF4Backend.model.EstimatedMonthlyPaymentRequest;
+import com.altf4.app.model.MonthlyPaymentRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,10 +11,10 @@ public class EstimatedMonthlyPaymentRequestValidator {
     private final NegativeValueValidator negativeValueValidator = new NegativeValueValidator();
     private final LoanToDownPaymentRatioException loanToDownPaymentRatioException = new LoanToDownPaymentRatioException();
 
-    public void validate(EstimatedMonthlyPaymentRequest estimatedMonthlyPaymentRequest) {
-        minimalLoanValueValidator.validate(estimatedMonthlyPaymentRequest.getLoanSize());
-        loanTermValidator.validate(estimatedMonthlyPaymentRequest.getLoanTermYears());
-        negativeValueValidator.validate(estimatedMonthlyPaymentRequest);
-        loanToDownPaymentRatioException.validate(estimatedMonthlyPaymentRequest);
+    public void validate(MonthlyPaymentRequest monthlyPaymentRequest) {
+        minimalLoanValueValidator.validate(monthlyPaymentRequest.getLoanSize());
+        loanTermValidator.validate(monthlyPaymentRequest.getLoanTermYears());
+        negativeValueValidator.validate(monthlyPaymentRequest);
+        loanToDownPaymentRatioException.validate(monthlyPaymentRequest);
     }
 }
