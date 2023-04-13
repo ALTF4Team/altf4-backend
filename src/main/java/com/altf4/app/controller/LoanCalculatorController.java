@@ -23,7 +23,7 @@ public class LoanCalculatorController {
 
     @PostMapping
     @ResponseBody
-    public MonthlyPaymentResponse returnAnnuityCalculations(@RequestBody MonthlyPaymentRequest request){
+    public MonthlyPaymentResponse calculateMonthlyPayments(@RequestBody MonthlyPaymentRequest request){
         return loanCalculatorService.calculateMonthlyAnnuityPayments(request);
     }
 }
