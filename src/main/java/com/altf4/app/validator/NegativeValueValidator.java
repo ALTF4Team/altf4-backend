@@ -1,7 +1,7 @@
 package com.altf4.app.validator;
 
 import com.altf4.app.exception.ValidationException;
-import com.altf4.app.model.LoanCalculationRequest;
+import com.altf4.app.model.calculation.LoanCalculationRequest;
 
 public class NegativeValueValidator extends AbstractValidator<LoanCalculationRequest> {
 

@@ -9,6 +9,5 @@ public class LoanTermValidator extends AbstractValidator<Integer> {
         if (termYears > 30 || termYears < 1) {
             throw new ValidationException("Requested loan term must be between 1 and 30 years.");
         }
-
     }
 }

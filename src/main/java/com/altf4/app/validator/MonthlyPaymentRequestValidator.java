@@ -1,6 +1,6 @@
 package com.altf4.app.validator;
 
-import com.altf4.app.model.LoanCalculationRequest;
+import com.altf4.app.model.calculation.LoanCalculationRequest;
 import org.springframework.stereotype.Component;
 
 @Component
