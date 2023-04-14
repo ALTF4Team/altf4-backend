@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class MonthlyPaymentFormResponse {
 
     private final int monthlyPaymentAmount;
-    private final double interestRate;
+    private final String interestRate;
     private final int loanAmount;
     private final int totalInterestAmount;
     private final int totalPaymentSum;
@@ -23,7 +23,7 @@ public class MonthlyPaymentFormResponse {
     @Component
     public static class MonthlyPaymentResponseBuilder{
         private int monthlyPaymentAmount;
-        private double interestRate;
+        private String interestRate;
         private int loanAmount;
         private int totalInterestAmount;
         private int totalPaymentSum;
@@ -34,7 +34,7 @@ public class MonthlyPaymentFormResponse {
             this.monthlyPaymentAmount = monthlyPaymentAmount;
             return this;
         }
-        public MonthlyPaymentResponseBuilder interestRate(double interestRate) {
+        public MonthlyPaymentResponseBuilder interestRate(String interestRate) {
             this.interestRate = interestRate;
             return this;
         }

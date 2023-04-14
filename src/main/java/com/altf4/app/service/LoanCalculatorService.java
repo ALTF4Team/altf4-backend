@@ -43,7 +43,7 @@ public class LoanCalculatorService {
     public MonthlyPaymentFormResponse buildResponseObject(int monthlyPayment, MonthlyPaymentFormRequest request) {
         return new MonthlyPaymentFormResponse.MonthlyPaymentResponseBuilder()
                 .monthlyPaymentAmount(monthlyPayment)
-                .interestRate(EURIBOR_RATE + MARGIN)
+                .interestRate(Double.toString((EURIBOR_RATE + MARGIN)*100) + "%")
                 .loanAmount(calculateLoanAmount(request))
                 .totalInterestAmount(calculateTotalInterestAmount(monthlyPayment, request))
                 .totalPaymentSum(calculateLoanAmount(request) + calculateTotalInterestAmount(monthlyPayment, request))
