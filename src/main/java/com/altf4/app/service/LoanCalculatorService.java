@@ -1,7 +1,7 @@
 package com.altf4.app.service;
 
-import com.altf4.app.model.MonthlyPaymentFormResponse;
-import com.altf4.app.model.MonthlyPaymentFormRequest;
+import com.altf4.app.model.LoanCalculationResponse;
+import com.altf4.app.model.LoanCalculationRequest;
 import com.altf4.app.validator.MonthlyPaymentRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,17 +20,19 @@ public class LoanCalculatorService {
     }
 
 
-    public MonthlyPaymentFormResponse generateMonthlyPaymentFormResponse(MonthlyPaymentFormRequest request) {
+    public LoanCalculationResponse getLoanCalculations(LoanCalculationRequest request) {
 
         validator.validate(request);
 
-        int monthlyPayment = calculateMonthlyPayment(request);
-
-        return buildResponseObject(monthlyPayment, request);
+        return calculateLoan(request);
     }
 
+    private LoanCalculationResponse calculateLoan(LoanCalculationRequest request) {
+        int monthlyPayment = calculateMonthlyPayment(request);
+        return buildResponse(request, monthlyPayment);
+    }
 
-    private static int calculateMonthlyPayment(MonthlyPaymentFormRequest request) {
+    private static int calculateMonthlyPayment(LoanCalculationRequest request) {
         int banksLoanAmount = calculateLoanAmount(request);
         double monthlyInterestRate = (EURIBOR_RATE + MARGIN) / 12;
         int loanTermMonths = request.getTermYears() * 12;
@@ -40,25 +42,27 @@ public class LoanCalculatorService {
                      / (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1) / 10.0) * 10);
     }
 
-    public MonthlyPaymentFormResponse buildResponseObject(int monthlyPayment, MonthlyPaymentFormRequest request) {
-        return new MonthlyPaymentFormResponse.MonthlyPaymentResponseBuilder()
+    private static LoanCalculationResponse buildResponse(LoanCalculationRequest request, int monthlyPayment) {
+        return new LoanCalculationResponse.LoanCalculationResponseBuilder()
                 .monthlyPaymentAmount(monthlyPayment)
-                .interestRate(Double.toString((EURIBOR_RATE + MARGIN)*100) + "%")
+                .interestRate(EURIBOR_RATE + MARGIN)
                 .loanAmount(calculateLoanAmount(request))
-                .totalInterestAmount(calculateTotalInterestAmount(monthlyPayment, request))
-                .totalPaymentSum(calculateLoanAmount(request) + calculateTotalInterestAmount(monthlyPayment, request))
+                .totalInterestAmount(calculateTotalInterestAmount(request, monthlyPayment))
+                .totalPaymentSum(calculateTotalPaymentSum(request, monthlyPayment))
                 .build();
-
     }
 
-    private static int calculateLoanAmount(MonthlyPaymentFormRequest request) {
+    private static int calculateLoanAmount(LoanCalculationRequest request) {
         return request.getTotalAmount() - request.getDownPayment();
     }
-    private static int calculateTotalInterestAmount(int monthlyPayment, MonthlyPaymentFormRequest request) {
+    private static int calculateTotalInterestAmount(LoanCalculationRequest request, int monthlyPayment) {
         return monthlyPayment * 12 * request.getTermYears() - (request.getTotalAmount() - request.getDownPayment());
     }
+    private static int calculateTotalPaymentSum(LoanCalculationRequest request, int monthlyPayment) {
+        return calculateLoanAmount(request) + calculateTotalInterestAmount(request, monthlyPayment);
+    }
 
-    
+
 
 
 }

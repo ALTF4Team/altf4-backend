@@ -1,7 +1,7 @@
 package com.altf4.app.controller;
 
-import com.altf4.app.model.MonthlyPaymentFormResponse;
-import com.altf4.app.model.MonthlyPaymentFormRequest;
+import com.altf4.app.model.LoanCalculationResponse;
+import com.altf4.app.model.LoanCalculationRequest;
 import com.altf4.app.service.LoanCalculatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class LoanCalculatorController {
 
     @PostMapping
     @ResponseBody
-    public MonthlyPaymentFormResponse processMonthlyPaymentForm(@RequestBody MonthlyPaymentFormRequest request){
-        return loanCalculatorService.generateMonthlyPaymentFormResponse(request);
+    public LoanCalculationResponse getLoanCalculations(@RequestBody LoanCalculationRequest request){
+        return loanCalculatorService.getLoanCalculations(request);
     }
 }

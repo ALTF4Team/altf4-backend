@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MonthlyPaymentFormRequest {
+public class LoanCalculationRequest {
 
     private int totalAmount;
 

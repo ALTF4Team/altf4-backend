@@ -5,15 +5,15 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Component
-public class MonthlyPaymentFormResponse {
+public class LoanCalculationResponse {
 
     private final int monthlyPaymentAmount;
-    private final String interestRate;
+    private final double interestRate;
     private final int loanAmount;
     private final int totalInterestAmount;
     private final int totalPaymentSum;
 
-    private MonthlyPaymentFormResponse(MonthlyPaymentResponseBuilder builder) {
+    private LoanCalculationResponse(LoanCalculationResponseBuilder builder) {
         this.monthlyPaymentAmount = builder.monthlyPaymentAmount;
         this.interestRate = builder.interestRate;
         this.loanAmount = builder.loanAmount;
@@ -21,38 +21,38 @@ public class MonthlyPaymentFormResponse {
         this.totalPaymentSum = builder.totalPaymentSum;
     }
     @Component
-    public static class MonthlyPaymentResponseBuilder{
+    public static class LoanCalculationResponseBuilder {
         private int monthlyPaymentAmount;
-        private String interestRate;
+        private double interestRate;
         private int loanAmount;
         private int totalInterestAmount;
         private int totalPaymentSum;
 
-        public MonthlyPaymentResponseBuilder() {}
+        public LoanCalculationResponseBuilder() {}
 
-        public MonthlyPaymentResponseBuilder monthlyPaymentAmount(int monthlyPaymentAmount) {
+        public LoanCalculationResponseBuilder monthlyPaymentAmount(int monthlyPaymentAmount) {
             this.monthlyPaymentAmount = monthlyPaymentAmount;
             return this;
         }
-        public MonthlyPaymentResponseBuilder interestRate(String interestRate) {
+        public LoanCalculationResponseBuilder interestRate(double interestRate) {
             this.interestRate = interestRate;
             return this;
         }
-        public MonthlyPaymentResponseBuilder loanAmount(int loanAmount) {
+        public LoanCalculationResponseBuilder loanAmount(int loanAmount) {
             this.loanAmount = loanAmount;
             return this;
         }
-        public MonthlyPaymentResponseBuilder totalInterestAmount(int totalInterestAmount) {
+        public LoanCalculationResponseBuilder totalInterestAmount(int totalInterestAmount) {
             this.totalInterestAmount = totalInterestAmount;
             return this;
         }
-        public MonthlyPaymentResponseBuilder totalPaymentSum(int totalPaymentSum) {
+        public LoanCalculationResponseBuilder totalPaymentSum(int totalPaymentSum) {
             this.totalPaymentSum = totalPaymentSum;
             return this;
         }
 
-        public MonthlyPaymentFormResponse build() {
-            return new MonthlyPaymentFormResponse(this);
+        public LoanCalculationResponse build() {
+            return new LoanCalculationResponse(this);
         }
     }
 
