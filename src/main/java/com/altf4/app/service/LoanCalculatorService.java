@@ -62,7 +62,4 @@ public class LoanCalculatorService {
         return calculateLoanAmount(request) + calculateTotalInterestAmount(request, monthlyPayment);
     }
 
-
-
-
 }

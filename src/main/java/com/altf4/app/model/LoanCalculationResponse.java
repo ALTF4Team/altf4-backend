@@ -55,5 +55,4 @@ public class LoanCalculationResponse {
             return new LoanCalculationResponse(this);
         }
     }
-
 }

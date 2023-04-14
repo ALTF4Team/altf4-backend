@@ -10,6 +10,5 @@ public class MinimalLoanValueValidator extends AbstractValidator <Integer> {
         if (totalAmount < 10000) {
             throw new ValidationException("Requested loan must be at least 10.000 euros.");
         }
-
     }
 }
