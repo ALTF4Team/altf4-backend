@@ -55,11 +55,9 @@ public class LoanCalculatorService {
     private static int calculateLoanAmount(LoanCalculationRequest request) {
         return request.getTotalAmount() - request.getDownPayment();
     }
-
     private static int calculateTotalInterestAmount(LoanCalculationRequest request, int monthlyPayment) {
         return monthlyPayment * 12 * request.getTermYears() - (request.getTotalAmount() - request.getDownPayment());
     }
-
     private static int calculateTotalPaymentSum(LoanCalculationRequest request, int monthlyPayment) {
         return calculateLoanAmount(request) + calculateTotalInterestAmount(request, monthlyPayment);
     }

@@ -21,7 +21,7 @@ public class LoanCalculatorController {
 
     @PostMapping
     @ResponseBody
-    public LoanCalculationResponse getLoanCalculations(@RequestBody LoanCalculationRequest request){
+    public LoanCalculationResponse getLoanCalculations(@RequestBody LoanCalculationRequest request) {
         return loanCalculatorService.getLoanCalculations(request);
     }
 }
