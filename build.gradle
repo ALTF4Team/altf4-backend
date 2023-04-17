@@ -34,10 +34,6 @@ jar {
 	archivesBaseName = 'bank-backend-app'
 }
 
-jar {
-	archivesBaseName = 'bank-backend-app'
-}
-
 tasks.named('test') {
 	useJUnitPlatform()
 }
