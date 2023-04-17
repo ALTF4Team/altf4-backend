@@ -28,10 +28,27 @@ dependencies {
 
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.0.4'
 
+}
 
-
+jar {
+	archivesBaseName = 'bank-backend-app'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+processResources {
+	// Set the input directory for resources
+	sourceSets.main.resources.srcDirs = ['src/main/resources']
+
+	// Enable filtering for resources
+	eachFile { FileCopyDetails file ->
+		if (file.name.endsWith('.properties') || file.name.endsWith('.yml')) {
+			file.filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: project.properties)
+		}
+	}
+}
+
+
+
