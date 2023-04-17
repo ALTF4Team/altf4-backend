@@ -11,4 +11,4 @@ COPY . /app
 # Build the project
 RUN ./gradlew build
 # Set the startup command
-CMD ["java", "-jar", "build/libs/message.jar"]
+CMD ["java", "-jar", "build/libs/bank-backend-app-0.0.1-SNAPSHOT.jar"]
