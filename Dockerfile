@@ -1,4 +1,6 @@
-FROM openjdk:19-alpine
+
+FROM openjdk:17-alpine
+
 # Set the working directory
 WORKDIR /app
 # Copy the Gradle files
@@ -12,3 +14,4 @@ COPY . /app
 RUN ./gradlew build
 # Set the startup command
 CMD ["java", "-jar", "build/libs/bank-backend-app-0.0.1-SNAPSHOT.jar"]
+
