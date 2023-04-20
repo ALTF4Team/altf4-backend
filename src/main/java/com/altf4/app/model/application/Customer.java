@@ -1,36 +1,41 @@
 package com.altf4.app.model.application;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "customer")
 @Data
+@Table(name = "customer")
+@Entity
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id", table = "customer")
+    @JsonIgnore
+    private long id;
 
-    @Column(name = "name")
+    @NotBlank(message = "/////////////////////////////////////////////")
     private String name;
 
-    @Column(name = "surname")
+    @NotBlank
     private String surname;
 
+    @NotNull
     @Column(name = "citizenship")
-    private String citizenship;
+    private String countryOfCitizenship;
 
+    @NotNull @Past
     @Column(name = "birth_date")
-    private LocalDate birthDate;
+    private LocalDate yearOfBirth;
 
-    @Column(name = "mobile_number")
-    private long mobileNumber;
+    @Size(min = 8, max = 20)
+    private String mobileNumber;
 
-    @Column(name = "email")
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
     private String email;
 
 }

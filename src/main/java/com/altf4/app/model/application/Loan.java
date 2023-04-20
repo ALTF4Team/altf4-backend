@@ -1,9 +1,11 @@
 package com.altf4.app.model.application;
 
-import lombok.Cleanup;
+import com.altf4.app.model.application.type.LoanPurpose;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "loan")
@@ -12,19 +14,17 @@ public class Loan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(table = "id")
+    @JsonIgnore
     private int id;
 
-    @Column(table = "loan_purpose")
-    private String loanPurpose;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private LoanPurpose loanPurpose;
 
-    @Column(table = "total_amount")
     private int totalAmount;
 
-    @Column(table = "down_payment")
     private int downPayment;
 
-    @Column(table = "term_years")
-    private byte termYears;
+    private int termYears;
 
 }
