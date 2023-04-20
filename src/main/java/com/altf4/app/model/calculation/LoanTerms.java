@@ -1,4 +1,4 @@
-package com.altf4.app.model;
+package com.altf4.app.model.calculation;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

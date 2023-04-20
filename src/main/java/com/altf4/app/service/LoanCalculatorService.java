@@ -1,13 +1,13 @@
 package com.altf4.app.service;
 
-import com.altf4.app.model.LoanCalculationResponse;
-import com.altf4.app.model.LoanCalculationRequest;
+import com.altf4.app.model.calculation.LoanCalculationResponse;
+import com.altf4.app.model.calculation.LoanCalculationRequest;
 import com.altf4.app.validator.MonthlyPaymentRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.altf4.app.model.LoanTerms.EURIBOR_RATE;
-import static com.altf4.app.model.LoanTerms.MARGIN;
+import static com.altf4.app.model.calculation.LoanTerms.EURIBOR_RATE;
+import static com.altf4.app.model.calculation.LoanTerms.MARGIN;
 
 @Service
 public class LoanCalculatorService {

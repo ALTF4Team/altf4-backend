@@ -1,9 +1,9 @@
 package com.altf4.app.validator;
 
 import com.altf4.app.exception.ValidationException;
-import com.altf4.app.model.LoanCalculationRequest;
+import com.altf4.app.model.calculation.LoanCalculationRequest;
 
-import static com.altf4.app.model.LoanTerms.LOAN_TO_DOWN_PAYMENT_RATIO;
+import static com.altf4.app.model.calculation.LoanTerms.LOAN_TO_DOWN_PAYMENT_RATIO;
 
 public class LoanToDownPaymentRatioException extends AbstractValidator<LoanCalculationRequest> {
 

@@ -1,7 +1,7 @@
 package com.altf4.app.controller;
 
-import com.altf4.app.model.LoanCalculationResponse;
-import com.altf4.app.model.LoanCalculationRequest;
+import com.altf4.app.model.calculation.LoanCalculationRequest;
+import com.altf4.app.model.calculation.LoanCalculationResponse;
 import com.altf4.app.service.LoanCalculatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
