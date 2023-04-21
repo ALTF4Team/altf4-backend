@@ -5,5 +5,4 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum ApplicationStatus {
     PENDING, APPROVED, DENIED;
-
 }

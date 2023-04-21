@@ -18,21 +18,24 @@ public class Customer {
     @JsonIgnore
     private long id;
 
-    @NotBlank(message = "/////////////////////////////////////////////")
+    @NotBlank
+    @Size(max = 30)
     private String name;
 
     @NotBlank
+    @Size(max = 30)
     private String surname;
 
     @NotNull
     @Column(name = "citizenship")
     private String countryOfCitizenship;
 
-    @NotNull @Past
+    @NotNull
+    @Past
     @Column(name = "birth_date")
     private LocalDate yearOfBirth;
 
-    @Size(min = 8, max = 20)
+    @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$")
     private String mobileNumber;
 
     @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
