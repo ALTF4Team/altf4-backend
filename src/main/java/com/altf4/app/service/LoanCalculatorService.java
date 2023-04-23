@@ -1,9 +1,7 @@
 package com.altf4.app.service;
 
-import com.altf4.app.model.calculation.LoanCalculationResponse;
 import com.altf4.app.model.calculation.LoanCalculationRequest;
-import com.altf4.app.validator.MonthlyPaymentRequestValidator;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.altf4.app.model.calculation.LoanCalculationResponse;
 import org.springframework.stereotype.Service;
 
 import static com.altf4.app.model.calculation.LoanTerms.EURIBOR_RATE;
@@ -12,22 +10,9 @@ import static com.altf4.app.model.calculation.LoanTerms.MARGIN;
 @Service
 public class LoanCalculatorService {
 
-    private final MonthlyPaymentRequestValidator validator;
-
-    @Autowired
-    public LoanCalculatorService(MonthlyPaymentRequestValidator validator) {
-        this.validator = validator;
-    }
-
 
     public LoanCalculationResponse getLoanCalculations(LoanCalculationRequest request) {
 
-        validator.validate(request);
-
-        return calculateLoan(request);
-    }
-
-    private LoanCalculationResponse calculateLoan(LoanCalculationRequest request) {
         int monthlyPayment = calculateMonthlyPayment(request);
         return buildResponse(request, monthlyPayment);
     }
@@ -38,8 +23,8 @@ public class LoanCalculatorService {
         int loanTermMonths = request.getTermYears() * 12;
 
         return (int) (Math.round(banksLoanAmount * monthlyInterestRate
-                     * Math.pow(1 + monthlyInterestRate, loanTermMonths)
-                     / (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1) / 10.0) * 10);
+                * Math.pow(1 + monthlyInterestRate, loanTermMonths)
+                / (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1) / 10.0) * 10);
     }
 
     private static LoanCalculationResponse buildResponse(LoanCalculationRequest request, int monthlyPayment) {
@@ -55,9 +40,11 @@ public class LoanCalculatorService {
     private static int calculateLoanAmount(LoanCalculationRequest request) {
         return request.getTotalAmount() - request.getDownPayment();
     }
+
     private static int calculateTotalInterestAmount(LoanCalculationRequest request, int monthlyPayment) {
         return monthlyPayment * 12 * request.getTermYears() - (request.getTotalAmount() - request.getDownPayment());
     }
+
     private static int calculateTotalPaymentSum(LoanCalculationRequest request, int monthlyPayment) {
         return calculateLoanAmount(request) + calculateTotalInterestAmount(request, monthlyPayment);
     }

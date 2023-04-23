@@ -1,20 +1,30 @@
 package com.altf4.app.validator;
 
 import com.altf4.app.model.application.Loan;
+import lombok.SneakyThrows;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import java.lang.reflect.Field;
+
 import static com.altf4.app.model.calculation.LoanTerms.DOWN_PAYMENT_TO_LOAN_RATIO;
 
-public class DownPaymentAndLoanValidator implements ConstraintValidator<DownPaymentAndLoanConstraint, Loan> {
+public class DownPaymentAndLoanValidator implements ConstraintValidator<DownPaymentAndLoanConstraint, Object> {
 
 
+    @SneakyThrows
     @Override
-    public boolean isValid(Loan loan, ConstraintValidatorContext context) {
+    public boolean isValid(Object loan, ConstraintValidatorContext context) {
 
-        int downPayment = loan.getDownPayment();
-        int totalAmount = loan.getTotalAmount();
+        Field downPaymentField = loan.getClass().getDeclaredField("downPayment");
+        Field totalAmountField = loan.getClass().getDeclaredField("totalAmount");
+
+        downPaymentField.setAccessible(true);
+        totalAmountField.setAccessible(true);
+
+        int downPayment = (int) downPaymentField.get(loan);
+        int totalAmount = (int) totalAmountField.get(loan);
 
         if (totalAmount < 10000) {
             addConstraintViolation(context, "Loan has to be at least 10000");
@@ -31,7 +41,7 @@ public class DownPaymentAndLoanValidator implements ConstraintValidator<DownPaym
             return false;
         }
 
-            return true;
+        return true;
     }
 
     private void addConstraintViolation(ConstraintValidatorContext context, String message) {
