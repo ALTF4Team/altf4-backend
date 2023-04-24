@@ -38,8 +38,6 @@ public class LoanApplicationDataCorrector {
     private void capitalizeData(LoanApplication loanApplication) {
         capitalizeDataField(loanApplication.getCustomer(), "name");
         capitalizeDataField(loanApplication.getCustomer(), "surname");
-        capitalizeDataField(loanApplication.getFinancialInformation(), "industry");
-        capitalizeDataField(loanApplication.getFinancialInformation(), "position");
     }
 
     private void clearIrrelevantFields(LoanApplication loanApplication) {
