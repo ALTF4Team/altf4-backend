@@ -1,8 +1,8 @@
 package com.altf4.app.model.application;
 
 import com.altf4.app.model.application.type.LoanPurpose;
-import com.altf4.app.validator.LoanTermConstraint;
 import com.altf4.app.validator.DownPaymentAndLoanConstraint;
+import com.altf4.app.validator.LoanTermConstraint;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 

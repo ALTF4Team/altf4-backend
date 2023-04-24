@@ -9,7 +9,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "financial_information")
@@ -34,10 +37,8 @@ public class FinancialInformation {
     @Enumerated(EnumType.STRING)
     private EmploymentContractType employmentContractType;
 
-    @NotNull
     private String position;
 
-    @NotNull
     private String industry;
 
     @Column(name = "years_self_employed")
@@ -61,6 +62,6 @@ public class FinancialInformation {
     @PositiveOrZero
     private int monthlyIncome;
 
-    private boolean coBorrower;
+    private String coBorrower;
 
 }

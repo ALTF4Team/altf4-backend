@@ -1,10 +1,14 @@
 package com.altf4.app.model.application;
 
+import com.altf4.app.validator.AgeConstraint;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Data
@@ -26,11 +30,11 @@ public class Customer {
     @Size(max = 30)
     private String surname;
 
-    @NotNull
+    //    @CountryOfCitizenshipConstraint
     @Column(name = "citizenship")
     private String countryOfCitizenship;
 
-    @NotNull
+    @AgeConstraint
     @Past
     @Column(name = "birth_date")
     private LocalDate yearOfBirth;
