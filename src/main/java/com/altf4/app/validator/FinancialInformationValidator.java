@@ -12,15 +12,8 @@ public class FinancialInformationValidator implements
 
     @Override
     public boolean isValid(FinancialInformation form, ConstraintValidatorContext context) {
-        if (form == null) {
-            return true;
-        }
 
         EmploymentStatus employmentStatus = form.getEmploymentStatus();
-
-        if (employmentStatus == null) {
-            return true;
-        }
 
         return switch (employmentStatus) {
             case CONTRACT_EMPLOYMENT -> validateContractEmployment(form);
@@ -36,7 +29,9 @@ public class FinancialInformationValidator implements
                 form.getYearsCurrentEmployer() != null &&
                 form.getYearsCurrentEmployer() > 0 &&
                 form.getYearsCurrentEmployer() <= 70 &&
-                form.getEmploymentContractType() != null;
+                form.getEmploymentContractType() != null &&
+                form.getPosition() != null &&
+                form.getIndustry() != null;
     }
 
     private static boolean validateSelfEmployment(FinancialInformation form) {
