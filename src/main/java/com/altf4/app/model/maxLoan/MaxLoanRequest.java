@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class maxLoanRequest {
+public class MaxLoanRequest {
     private int monthlyIncomeAfterTaxes;
     private int existingLiabilities;
     private int noOfDependents;
