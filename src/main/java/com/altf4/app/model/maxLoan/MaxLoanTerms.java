@@ -2,9 +2,6 @@ package com.altf4.app.model.maxLoan;
 
 public class MaxLoanTerms {
     public static final double loanToServiceRatio = 0.40;
-    public static final double oneDependentMultiplier = 0.05;
-    public static final double twoDependentMultiplier = 0.25;
-    public static final double moreThanTwoDependentMultiplier = 0.39;
 
     public static final int dependentMargin  = 20536;
     public static final int oneDependentAdjusted = 4708;

@@ -13,7 +13,7 @@ public class MaxLoanCalculatorService {
 
     public MaxLoanResponse calculateMaxLoanAmount(MaxLoanRequest request){
         int totalMonthlyIncome = request.getMonthlyIncomeAfterTaxes() - request.getExistingLiabilities();
-        double maxLoanAmount = totalMonthlyIncome*loanToServiceRatio*0.5;
+        double maxLoanAmount = totalMonthlyIncome*loanToServiceRatio*0.5*maxTermYears*12;
         int maxLoanAdjusted =  (int) dependentAdjuster(totalMonthlyIncome, request.getNoOfDependents(), maxLoanAmount);
         int maxMonthlyPayment =calculateMaxMonthlyAmount(request);
         return buildResponse(maxLoanAdjusted, maxMonthlyPayment);
