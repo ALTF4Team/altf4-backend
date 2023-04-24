@@ -4,7 +4,7 @@ import com.altf4.app.util.StringToEnumConverter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum LoanPurpose {
-    MORTAGE;
+    MORTGAGE;
 
     @JsonCreator
     public static LoanPurpose capitalValue(String text) {

@@ -37,8 +37,7 @@ public class Customer {
 
     @AgeConstraint
     @Past
-    @Column(name = "birth_date")
-    private LocalDate yearOfBirth;
+    private LocalDate birthDate;
 
     @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$")
     private String mobileNumber;
