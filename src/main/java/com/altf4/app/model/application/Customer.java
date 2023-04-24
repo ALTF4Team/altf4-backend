@@ -1,6 +1,7 @@
 package com.altf4.app.model.application;
 
 import com.altf4.app.validator.AgeConstraint;
+import com.altf4.app.validator.CountryOfCitizenshipConstraint;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -30,7 +31,7 @@ public class Customer {
     @Size(max = 30)
     private String surname;
 
-    //    @CountryOfCitizenshipConstraint
+    @CountryOfCitizenshipConstraint
     @Column(name = "citizenship")
     private String countryOfCitizenship;
 
