@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/admin/application")
+@RequestMapping("/api/admin/applications")
 public class AdminController {
 
     private final AdminService adminService;
