@@ -11,8 +11,6 @@ import static com.altf4.app.validator.ValidationsConstants.MINIMUM_LOAN_AMOUNT;
 
 public class DownPaymentAndLoanValidator implements ConstraintValidator<DownPaymentAndLoanConstraint, Object> {
 
-
-    @SneakyThrows
     @Override
     public boolean isValid(Object loan, ConstraintValidatorContext context) {
 
