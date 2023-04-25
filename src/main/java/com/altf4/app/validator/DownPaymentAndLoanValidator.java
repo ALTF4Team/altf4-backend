@@ -1,14 +1,13 @@
 package com.altf4.app.validator;
 
-import com.altf4.app.model.application.Loan;
 import lombok.SneakyThrows;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
 import java.lang.reflect.Field;
 
-import static com.altf4.app.model.calculation.LoanTerms.DOWN_PAYMENT_TO_LOAN_RATIO;
+import static com.altf4.app.validator.ValidationsConstants.DOWN_PAYMENT_TO_LOAN_RATIO;
+import static com.altf4.app.validator.ValidationsConstants.MINIMUM_LOAN_AMOUNT;
 
 public class DownPaymentAndLoanValidator implements ConstraintValidator<DownPaymentAndLoanConstraint, Object> {
 
@@ -17,16 +16,10 @@ public class DownPaymentAndLoanValidator implements ConstraintValidator<DownPaym
     @Override
     public boolean isValid(Object loan, ConstraintValidatorContext context) {
 
-        Field downPaymentField = loan.getClass().getDeclaredField("downPayment");
-        Field totalAmountField = loan.getClass().getDeclaredField("totalAmount");
+        int downPayment = getDownPaymentField(loan);
+        int totalAmount = getTotalAmountField(loan);
 
-        downPaymentField.setAccessible(true);
-        totalAmountField.setAccessible(true);
-
-        int downPayment = (int) downPaymentField.get(loan);
-        int totalAmount = (int) totalAmountField.get(loan);
-
-        if (totalAmount < 10000) {
+        if (totalAmount < MINIMUM_LOAN_AMOUNT) {
             addConstraintViolation(context, "Loan has to be at least 10000");
             return false;
         }
@@ -42,6 +35,20 @@ public class DownPaymentAndLoanValidator implements ConstraintValidator<DownPaym
         }
 
         return true;
+    }
+
+    @SneakyThrows
+    private int getDownPaymentField(Object loan) {
+        Field downPaymentField = loan.getClass().getDeclaredField("downPayment");
+        downPaymentField.setAccessible(true);
+        return (int) downPaymentField.get(loan);
+    }
+
+    @SneakyThrows
+    private int getTotalAmountField(Object loan) {
+        Field totalAmountField = loan.getClass().getDeclaredField("totalAmount");
+        totalAmountField.setAccessible(true);
+        return (int) totalAmountField.get(loan);
     }
 
     private void addConstraintViolation(ConstraintValidatorContext context, String message) {

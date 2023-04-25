@@ -5,6 +5,8 @@ import javax.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
 import java.time.Period;
 
+import static com.altf4.app.validator.ValidationsConstants.MINIMAL_AGE;
+
 public class AgeValidator implements ConstraintValidator<AgeConstraint, LocalDate> {
 
     @Override
@@ -14,6 +16,6 @@ public class AgeValidator implements ConstraintValidator<AgeConstraint, LocalDat
 
         int age = period.getYears();
 
-        return age >= 18;
+        return age >= MINIMAL_AGE;
     }
 }
