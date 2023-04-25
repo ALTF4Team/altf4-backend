@@ -1,7 +1,6 @@
 package com.altf4.app.model.application;
 
 import com.altf4.app.model.application.type.ApplicationStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +15,8 @@ public class LoanApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @JsonIgnore
     private int id;
 
-    @JsonIgnore
     @Enumerated(EnumType.STRING)
     private ApplicationStatus applicationStatus;
 
