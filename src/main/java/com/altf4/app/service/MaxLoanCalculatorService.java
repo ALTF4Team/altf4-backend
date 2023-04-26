@@ -21,7 +21,10 @@ public class MaxLoanCalculatorService {
     }
 
     public double dependentAdjuster(int totalMonthlyAmount, int noOfDependents, double maxLoanAmount){
-        if(totalMonthlyAmount < 1100){
+        if (totalMonthlyAmount<500){
+            return 0.0;
+        }
+        else if(totalMonthlyAmount < 1100){
             return maxLoanAmount - (noOfDependents + 1)*dependentMargin;
         }
         else if(totalMonthlyAmount < 2000){
