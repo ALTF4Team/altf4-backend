@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/loan-calculator")
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class LoanCalculatorController {
 
     @PostMapping
     @ResponseBody
-    public LoanCalculationResponse getLoanCalculations(@RequestBody LoanCalculationRequest request) {
+    public LoanCalculationResponse getLoanCalculations(@RequestBody @Valid LoanCalculationRequest request) {
         return loanCalculatorService.getLoanCalculations(request);
     }
 }

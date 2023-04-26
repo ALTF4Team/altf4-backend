@@ -24,5 +24,4 @@ public class LoanApplicationController {
     public void saveLoanApplication(@RequestBody LoanApplication form) {
         loanApplicationService.saveLoanApplication(form);
     }
-
 }

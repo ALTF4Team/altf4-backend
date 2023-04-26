@@ -1,13 +1,15 @@
 package com.altf4.app.validator;
 
-import com.altf4.app.exception.ValidationException;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
-public class LoanTermValidator extends AbstractValidator<Integer> {
+import static com.altf4.app.validator.ValidationsConstants.MAXIMUM_LOAN_TERM;
+import static com.altf4.app.validator.ValidationsConstants.MINIMUM_LOAN_TERM;
+
+public class LoanTermValidator implements ConstraintValidator<LoanTermConstraint, Integer> {
+
     @Override
-    public void validate(Integer termYears) throws ValidationException {
-
-        if (termYears > 30 || termYears < 1) {
-            throw new ValidationException("Requested loan term must be between 1 and 30 years.");
-        }
+    public boolean isValid(Integer termYears, ConstraintValidatorContext context) {
+        return termYears <= MAXIMUM_LOAN_TERM && termYears >= MINIMUM_LOAN_TERM;
     }
 }
