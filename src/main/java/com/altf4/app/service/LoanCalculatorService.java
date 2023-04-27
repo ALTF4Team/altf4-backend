@@ -1,25 +1,20 @@
 package com.altf4.app.service;
 
+import com.altf4.app.model.calculation.CallToApi;
 import com.altf4.app.model.calculation.LoanCalculationRequest;
 import com.altf4.app.model.calculation.LoanCalculationResponse;
 import org.springframework.stereotype.Service;
 
-import static com.altf4.app.model.calculation.LoanTerms.EURIBOR_RATE;
 import static com.altf4.app.model.calculation.LoanTerms.MARGIN;
 
 @Service
 public class LoanCalculatorService {
 
-
-    public LoanCalculationResponse getLoanCalculations(LoanCalculationRequest request) {
-
-        int monthlyPayment = calculateMonthlyPayment(request);
-        return buildResponse(request, monthlyPayment);
-    }
+    static CallToApi callToApi = new CallToApi();
 
     private static int calculateMonthlyPayment(LoanCalculationRequest request) {
         int banksLoanAmount = calculateLoanAmount(request);
-        double monthlyInterestRate = (EURIBOR_RATE + MARGIN) / 12;
+        double monthlyInterestRate = (callToApi.euriborRate() + MARGIN) / 12;
         int loanTermMonths = request.getTermYears() * 12;
 
         return (int) (Math.round(banksLoanAmount * monthlyInterestRate
@@ -30,7 +25,7 @@ public class LoanCalculatorService {
     private static LoanCalculationResponse buildResponse(LoanCalculationRequest request, int monthlyPayment) {
         return new LoanCalculationResponse.LoanCalculationResponseBuilder()
                 .monthlyPaymentAmount(monthlyPayment)
-                .interestRate(EURIBOR_RATE + MARGIN)
+                .interestRate(callToApi.euriborRate() + MARGIN)
                 .loanAmount(calculateLoanAmount(request))
                 .totalInterestAmount(calculateTotalInterestAmount(request, monthlyPayment))
                 .totalPaymentSum(calculateTotalPaymentSum(request, monthlyPayment))
@@ -47,6 +42,12 @@ public class LoanCalculatorService {
 
     private static int calculateTotalPaymentSum(LoanCalculationRequest request, int monthlyPayment) {
         return calculateLoanAmount(request) + calculateTotalInterestAmount(request, monthlyPayment);
+    }
+
+    public LoanCalculationResponse getLoanCalculations(LoanCalculationRequest request) {
+
+        int monthlyPayment = calculateMonthlyPayment(request);
+        return buildResponse(request, monthlyPayment);
     }
 
 }
