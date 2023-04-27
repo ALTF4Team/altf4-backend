@@ -44,7 +44,7 @@ public class CallToApi {
                 euriborRateForLoan = euribor.getRate_pct();
             }
         }
-        return euriborRateForLoan;
+        return euriborRateForLoan/100.0;
     }
 
 
