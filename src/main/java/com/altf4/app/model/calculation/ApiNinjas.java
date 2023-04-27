@@ -9,11 +9,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class CallToApi {
-    public CallToApi() {
+public class ApiNinjas {
+    public ApiNinjas() {
     }
-    public Double euriborRate()  {
-        Double euriborRateForLoan = 0.0;
+    public double getEuriborRateFor6Months() throws ApiErrorException {
+        double euriborRateForLoan = 0.0;
         HttpRequest request = null;
         try {
             request = HttpRequest.newBuilder().uri(new URI("https://api.api-ninjas.com/v1/interestrate?name=Euribor"))
@@ -21,7 +21,7 @@ public class CallToApi {
                     .GET()
                     .build();
         } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new ApiErrorException();
         }
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -29,10 +29,8 @@ public class CallToApi {
         HttpResponse<String> response= null;
         try {
             response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | InterruptedException e) {
+            throw new ApiErrorException();
         }
 
         Gson gson = new Gson();
