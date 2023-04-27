@@ -1,11 +1,11 @@
-package com.altf4.app.model.calculation;
+package com.altf4.app.model.monthlypayments;
 
 import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 @Getter
 @Component
-public class LoanCalculationResponse {
+public class MonthlyPaymentsResponse {
 
     private final int monthlyPaymentAmount;
     private final double interestRate;
@@ -13,7 +13,7 @@ public class LoanCalculationResponse {
     private final int totalInterestAmount;
     private final int totalPaymentSum;
 
-    private LoanCalculationResponse(LoanCalculationResponseBuilder builder) {
+    private MonthlyPaymentsResponse(LoanCalculationResponseBuilder builder) {
         this.monthlyPaymentAmount = builder.monthlyPaymentAmount;
         this.interestRate = builder.interestRate;
         this.loanAmount = builder.loanAmount;
@@ -51,8 +51,8 @@ public class LoanCalculationResponse {
             return this;
         }
 
-        public LoanCalculationResponse build() {
-            return new LoanCalculationResponse(this);
+        public MonthlyPaymentsResponse build() {
+            return new MonthlyPaymentsResponse(this);
         }
     }
 }

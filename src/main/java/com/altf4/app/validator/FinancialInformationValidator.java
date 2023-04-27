@@ -24,7 +24,7 @@ public class FinancialInformationValidator implements
 
 
     private static boolean validateContractEmployment(FinancialInformation form) {
-        return  form.getCurrentEmployer() != null &&
+        return form.getCurrentEmployer() != null &&
                 !Objects.equals(form.getCurrentEmployer().trim(), "") &&
                 form.getYearsCurrentEmployer() != null &&
                 form.getYearsCurrentEmployer() > 0 &&
@@ -35,13 +35,13 @@ public class FinancialInformationValidator implements
     }
 
     private static boolean validateSelfEmployment(FinancialInformation form) {
-        return  form.getYearsSelfEmployment() != null &&
+        return form.getYearsSelfEmployment() != null &&
                 form.getYearsSelfEmployment() > 0 &&
                 form.getYearsSelfEmployment() <= 70;
     }
 
     private static boolean validateUnemployment(FinancialInformation form) {
-        return  form.getSourceOfIncome() != null &&
+        return form.getSourceOfIncome() != null &&
                 !Objects.equals(form.getSourceOfIncome().trim(), "");
     }
 
