@@ -20,7 +20,7 @@ public class AdminService {
 
 
     public List<LoanApplication> getLoanApplications() {
-        return repository.findAll();
+        return repository.findAllByOrderByApplicationStatusDesc();
     }
 
     public LoanApplication getLoanApplicationById(int id) {
