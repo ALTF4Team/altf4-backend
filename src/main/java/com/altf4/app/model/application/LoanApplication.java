@@ -21,7 +21,7 @@ public class LoanApplication {
     @Enumerated(EnumType.STRING)
     private ApplicationStatus applicationStatus;
 
-    private LocalDateTime localDateTime;
+    private LocalDateTime timeCreated;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
