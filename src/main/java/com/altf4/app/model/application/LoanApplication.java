@@ -32,4 +32,8 @@ public class LoanApplication {
     @JoinColumn(name = "loan_id")
     private Loan loan;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coborrower_id")
+    private Customer coBorrower;
+
 }

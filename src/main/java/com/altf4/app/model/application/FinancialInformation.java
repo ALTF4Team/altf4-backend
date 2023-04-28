@@ -62,6 +62,4 @@ public class FinancialInformation {
     @PositiveOrZero
     private int monthlyIncome;
 
-    private String coBorrower;
-
 }
