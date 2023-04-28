@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -19,6 +20,8 @@ public class LoanApplication {
 
     @Enumerated(EnumType.STRING)
     private ApplicationStatus applicationStatus;
+
+    private LocalDateTime localDateTime;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
