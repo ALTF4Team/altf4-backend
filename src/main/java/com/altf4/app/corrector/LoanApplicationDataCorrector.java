@@ -24,7 +24,7 @@ public class LoanApplicationDataCorrector {
     public void correctDataInput(LoanApplication loanApplication) {
 
         loanApplication.setApplicationStatus(PENDING);
-        loanApplication.setLocalDateTime(LocalDateTime.now());
+        loanApplication.setTimeCreated(LocalDateTime.now());
 
         correctUserInput(loanApplication);
     }
