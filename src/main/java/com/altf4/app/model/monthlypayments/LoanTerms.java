@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoanTerms {
 
-    public static final double EURIBOR_RATE = 0.03335;
     public static final double MARGIN = 0.025;
+
+    public static final double DEFAULT_EURIBOR = 0.03335;
 
 }
