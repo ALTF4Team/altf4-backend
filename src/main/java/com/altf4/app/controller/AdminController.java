@@ -20,7 +20,6 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-
     @GetMapping()
     public List<LoanApplication> getLoanApplications() {
         return adminService.getLoanApplications();
@@ -34,11 +33,6 @@ public class AdminController {
     @PutMapping("/{id}")
     public void updateApplicationStatus(@PathVariable int id, ApplicationStatus status) {
         adminService.updateApplicationStatus(id, status);
-    }
-
-    @DeleteMapping
-    public void deleteAllApplications() {
-        adminService.deleteAllApplications();
     }
 
     @GetMapping("/search")

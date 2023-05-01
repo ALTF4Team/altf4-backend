@@ -23,7 +23,6 @@ public class AdminService {
         this.emailSenderService = emailSenderService;
     }
 
-
     public List<LoanApplication> getLoanApplications() {
         return repository.findAllByOrderByApplicationStatusDesc();
     }
@@ -41,12 +40,6 @@ public class AdminService {
         }
 
         repository.save(application);
-
-
-    }
-
-    public void deleteAllApplications() {
-        repository.deleteAll();
     }
 
     public List<LoanApplication> searchLoanApplicationsByCustomer(String name) {

@@ -6,7 +6,8 @@ import com.altf4.app.model.monthlypayments.MonthlyPaymentsRequest;
 import com.altf4.app.model.monthlypayments.MonthlyPaymentsResponse;
 import org.springframework.stereotype.Service;
 
-import static com.altf4.app.model.monthlypayments.LoanTerms.*;
+import static com.altf4.app.model.monthlypayments.LoanTerms.DEFAULT_EURIBOR;
+import static com.altf4.app.model.monthlypayments.LoanTerms.MARGIN;
 
 @Service
 public class LoanCalculatorService {

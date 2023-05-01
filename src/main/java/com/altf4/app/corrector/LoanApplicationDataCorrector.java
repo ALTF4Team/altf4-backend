@@ -24,23 +24,20 @@ public class LoanApplicationDataCorrector {
     public void correctDataInput(LoanApplication loanApplication) {
 
         loanApplication.setApplicationStatus(PENDING);
+
         loanApplication.setTimeCreated(LocalDateTime.now());
 
         correctUserInput(loanApplication);
     }
 
     private void correctUserInput(LoanApplication loanApplication) {
-
         capitalizeData(loanApplication);
-
         clearIrrelevantFields(loanApplication);
     }
-
 
     private void capitalizeData(LoanApplication loanApplication) {
         capitalizeDataField(loanApplication.getCustomer(), "name");
         capitalizeDataField(loanApplication.getCustomer(), "surname");
-
     }
 
     private void clearIrrelevantFields(LoanApplication loanApplication) {
@@ -53,23 +50,17 @@ public class LoanApplicationDataCorrector {
     }
 
     private void clearNonContractEmploymentFields(LoanApplication loanApplication) {
-
         clearSelfEmploymentFields(loanApplication);
-
         clearUnemployedFields(loanApplication);
     }
 
     private void clearNonSelfEmploymentFields(LoanApplication loanApplication) {
-
         clearContractEmploymentFields(loanApplication);
-
         clearUnemployedFields(loanApplication);
     }
 
     private void clearNonUnemployedFields(LoanApplication loanApplication) {
-
         clearContractEmploymentFields(loanApplication);
-
         clearSelfEmploymentFields(loanApplication);
     }
 
