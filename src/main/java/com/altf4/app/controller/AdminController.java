@@ -4,6 +4,7 @@ import com.altf4.app.model.application.LoanApplication;
 import com.altf4.app.model.application.type.ApplicationStatus;
 import com.altf4.app.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,4 +41,8 @@ public class AdminController {
         adminService.deleteAllApplications();
     }
 
+    @GetMapping("/search")
+    public List<LoanApplication> searchLoanApplicationsByCustomer(@Param("name") String name) {
+        return adminService.searchLoanApplicationsByCustomer(name);
+    }
 }

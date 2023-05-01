@@ -1,4 +1,4 @@
-package com.altf4.app.model.calculation;
+package com.altf4.app.model.monthlypayments;
 
 public class EuriborWrapper {
     private Euribor[] non_central_bank_rates;

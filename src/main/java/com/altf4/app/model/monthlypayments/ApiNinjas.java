@@ -1,4 +1,4 @@
-package com.altf4.app.model.calculation;
+package com.altf4.app.model.monthlypayments;
 
 import com.google.gson.Gson;
 

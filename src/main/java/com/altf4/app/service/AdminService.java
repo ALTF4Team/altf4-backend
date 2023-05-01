@@ -20,7 +20,7 @@ public class AdminService {
 
 
     public List<LoanApplication> getLoanApplications() {
-        return repository.findAll();
+        return repository.findAllByOrderByApplicationStatusDesc();
     }
 
     public LoanApplication getLoanApplicationById(int id) {
@@ -35,5 +35,9 @@ public class AdminService {
 
     public void deleteAllApplications() {
         repository.deleteAll();
+    }
+
+    public List<LoanApplication> searchLoanApplicationsByCustomer(String name) {
+        return repository.searchLoanApplicationsByCustomer(name);
     }
 }

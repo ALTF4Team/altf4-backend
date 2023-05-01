@@ -1,4 +1,4 @@
-package com.altf4.app.model.calculation;
+package com.altf4.app.model.monthlypayments;
 
 import com.altf4.app.validator.DownPaymentAndLoanConstraint;
 import com.altf4.app.validator.LoanTermConstraint;
@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @DownPaymentAndLoanConstraint
-public class LoanCalculationRequest {
+public class MonthlyPaymentsRequest {
 
     private int totalAmount;
 

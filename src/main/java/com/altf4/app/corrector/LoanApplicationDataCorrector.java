@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
+import java.time.LocalDateTime;
 
 import static com.altf4.app.model.application.type.ApplicationStatus.PENDING;
 
@@ -23,6 +24,7 @@ public class LoanApplicationDataCorrector {
     public void correctDataInput(LoanApplication loanApplication) {
 
         loanApplication.setApplicationStatus(PENDING);
+        loanApplication.setTimeCreated(LocalDateTime.now());
 
         correctUserInput(loanApplication);
     }
@@ -38,6 +40,7 @@ public class LoanApplicationDataCorrector {
     private void capitalizeData(LoanApplication loanApplication) {
         capitalizeDataField(loanApplication.getCustomer(), "name");
         capitalizeDataField(loanApplication.getCustomer(), "surname");
+
     }
 
     private void clearIrrelevantFields(LoanApplication loanApplication) {

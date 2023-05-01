@@ -1,7 +1,7 @@
 package com.altf4.app.controller;
 
-import com.altf4.app.model.calculation.LoanCalculationRequest;
-import com.altf4.app.model.calculation.LoanCalculationResponse;
+import com.altf4.app.model.monthlypayments.MonthlyPaymentsRequest;
+import com.altf4.app.model.monthlypayments.MonthlyPaymentsResponse;
 import com.altf4.app.service.LoanCalculatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class LoanCalculatorController {
 
     @PostMapping
     @ResponseBody
-    public LoanCalculationResponse getLoanCalculations(@RequestBody @Valid LoanCalculationRequest request) {
+    public MonthlyPaymentsResponse getLoanCalculations(@RequestBody @Valid MonthlyPaymentsRequest request) {
         return loanCalculatorService.getLoanCalculations(request);
     }
 }
