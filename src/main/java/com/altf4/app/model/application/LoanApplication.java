@@ -23,6 +23,8 @@ public class LoanApplication {
 
     private LocalDateTime timeCreated;
 
+    private boolean responseEmailSent;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
