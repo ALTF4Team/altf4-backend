@@ -36,4 +36,8 @@ public class AdminService {
     public void deleteAllApplications() {
         repository.deleteAll();
     }
+
+    public List<LoanApplication> searchLoanApplicationsByCustomer(String name) {
+        return repository.searchLoanApplicationsByCustomer(name);
+    }
 }
