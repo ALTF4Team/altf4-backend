@@ -11,15 +11,18 @@ public class LoanApplicationService {
 
     private final LoanApplicationRepository repository;
     private final LoanApplicationDataCorrector corrector;
+    private final EmailSenderService emailSenderService;
 
     @Autowired
-    LoanApplicationService(LoanApplicationRepository repository, LoanApplicationDataCorrector corrector) {
+    LoanApplicationService(LoanApplicationRepository repository, LoanApplicationDataCorrector corrector, EmailSenderService emailSenderService) {
         this.repository = repository;
         this.corrector = corrector;
+        this.emailSenderService = emailSenderService;
     }
 
     public void saveLoanApplication(LoanApplication form) {
         corrector.correctDataInput(form);
         repository.save(form);
+        emailSenderService.sendConfirmationEmail(form);
     }
 }

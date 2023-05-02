@@ -13,4 +13,9 @@ public interface LoanApplicationRepository extends JpaRepository<LoanApplication
 
     List<LoanApplication> findAllByOrderByApplicationStatusDesc();
 
+    default List<LoanApplication> searchLoanApplicationsByCustomer(String searchName) {
+        return findAllByCustomerNameContainingOrCustomerSurnameContainingOrderByApplicationStatusDesc(searchName, searchName);
+    }
+    List<LoanApplication> findAllByCustomerNameContainingOrCustomerSurnameContainingOrderByApplicationStatusDesc(String name, String surname);
+
 }

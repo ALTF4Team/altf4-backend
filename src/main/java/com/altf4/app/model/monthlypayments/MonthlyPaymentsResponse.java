@@ -20,6 +20,7 @@ public class MonthlyPaymentsResponse {
         this.totalInterestAmount = builder.totalInterestAmount;
         this.totalPaymentSum = builder.totalPaymentSum;
     }
+
     @Component
     public static class LoanCalculationResponseBuilder {
         private int monthlyPaymentAmount;
@@ -28,24 +29,29 @@ public class MonthlyPaymentsResponse {
         private int totalInterestAmount;
         private int totalPaymentSum;
 
-        public LoanCalculationResponseBuilder() {}
+        public LoanCalculationResponseBuilder() {
+        }
 
         public LoanCalculationResponseBuilder monthlyPaymentAmount(int monthlyPaymentAmount) {
             this.monthlyPaymentAmount = monthlyPaymentAmount;
             return this;
         }
+
         public LoanCalculationResponseBuilder interestRate(double interestRate) {
             this.interestRate = interestRate;
             return this;
         }
+
         public LoanCalculationResponseBuilder loanAmount(int loanAmount) {
             this.loanAmount = loanAmount;
             return this;
         }
+
         public LoanCalculationResponseBuilder totalInterestAmount(int totalInterestAmount) {
             this.totalInterestAmount = totalInterestAmount;
             return this;
         }
+
         public LoanCalculationResponseBuilder totalPaymentSum(int totalPaymentSum) {
             this.totalPaymentSum = totalPaymentSum;
             return this;

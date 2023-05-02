@@ -1,15 +1,18 @@
 package com.altf4.app.service;
 
+import com.altf4.app.model.monthlypayments.ApiErrorException;
+import com.altf4.app.model.monthlypayments.ApiNinjas;
 import com.altf4.app.model.monthlypayments.MonthlyPaymentsRequest;
 import com.altf4.app.model.monthlypayments.MonthlyPaymentsResponse;
 import org.springframework.stereotype.Service;
 
-import static com.altf4.app.model.monthlypayments.LoanTerms.EURIBOR_RATE;
+import static com.altf4.app.model.monthlypayments.LoanTerms.DEFAULT_EURIBOR;
 import static com.altf4.app.model.monthlypayments.LoanTerms.MARGIN;
 
 @Service
 public class LoanCalculatorService {
 
+    static ApiNinjas callToApi = new ApiNinjas();
 
     public MonthlyPaymentsResponse getLoanCalculations(MonthlyPaymentsRequest request) {
 
@@ -19,8 +22,14 @@ public class LoanCalculatorService {
 
     private static int calculateMonthlyPayment(MonthlyPaymentsRequest request) {
         int banksLoanAmount = calculateLoanAmount(request);
-        double monthlyInterestRate = (EURIBOR_RATE + MARGIN) / 12;
         int loanTermMonths = request.getTermYears() * 12;
+
+        double monthlyInterestRate;
+        try {
+            monthlyInterestRate = (callToApi.getEuriborRateFor6Months() + MARGIN) / 12;
+        } catch (ApiErrorException e) {
+            monthlyInterestRate = (DEFAULT_EURIBOR + MARGIN) / 12;
+        }
 
         return (int) (Math.round(banksLoanAmount * monthlyInterestRate
                 * Math.pow(1 + monthlyInterestRate, loanTermMonths)
@@ -28,13 +37,23 @@ public class LoanCalculatorService {
     }
 
     private static MonthlyPaymentsResponse buildResponse(MonthlyPaymentsRequest request, int monthlyPayment) {
-        return new MonthlyPaymentsResponse.LoanCalculationResponseBuilder()
-                .monthlyPaymentAmount(monthlyPayment)
-                .interestRate(EURIBOR_RATE + MARGIN)
-                .loanAmount(calculateLoanAmount(request))
-                .totalInterestAmount(calculateTotalInterestAmount(request, monthlyPayment))
-                .totalPaymentSum(calculateTotalPaymentSum(request, monthlyPayment))
-                .build();
+        try {
+            return new MonthlyPaymentsResponse.LoanCalculationResponseBuilder()
+                    .monthlyPaymentAmount(monthlyPayment)
+                    .interestRate(callToApi.getEuriborRateFor6Months() + MARGIN)
+                    .loanAmount(calculateLoanAmount(request))
+                    .totalInterestAmount(calculateTotalInterestAmount(request, monthlyPayment))
+                    .totalPaymentSum(calculateTotalPaymentSum(request, monthlyPayment))
+                    .build();
+        } catch (ApiErrorException e) {
+            return new MonthlyPaymentsResponse.LoanCalculationResponseBuilder()
+                    .monthlyPaymentAmount(monthlyPayment)
+                    .interestRate(DEFAULT_EURIBOR + MARGIN)
+                    .loanAmount(calculateLoanAmount(request))
+                    .totalInterestAmount(calculateTotalInterestAmount(request, monthlyPayment))
+                    .totalPaymentSum(calculateTotalPaymentSum(request, monthlyPayment))
+                    .build();
+        }
     }
 
     private static int calculateLoanAmount(MonthlyPaymentsRequest request) {
